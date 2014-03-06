@@ -1,12 +1,12 @@
 require 'rspec'
 require_relative 'tdd'
 
-describe Citizen do 
+describe TaxCalc do 
   it 'generates Citizen objects from CSV' do
-    expect(citizens["Liz Lemon"]).!nil?
+    expect(TaxCalc.new().citizens["Liz Lemon"]).!nil?
   end
   it "returns a person's tax rate when asked for it"
-  expect(citizens['Liz_lemon'].tax_rate.type).to eq(Integer)
+ # expect(@citizens['Liz_lemon'].tax_rate.type).to eq(Integer)
 end
 
 
