@@ -2,24 +2,20 @@ require 'csv'
 require 'pry'
 
 class TaxCalc
-  @citizens = {}
   attr :citizens
+  
   #def tax_liability
   #   end
   #   
   #   def tax_owed
   #   end
-  binding.pry
   
   def initialize
-    CSV.foreach('tax.csv', headers: true) do |row|
-      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],
-                                                                          row['last_name'],
-                                                                          row['annual_income'],
-                                                                          row['tax_paid'],
-                                                                          row['tax_rate'])
-    end
+    @citizens = {}
     
+    CSV.foreach('tax.csv', headers: true) do |row|      
+      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],row['last_name'], row['annual_income'],row['tax_paid'],row['tax_rate'])                                                                      
+    end
   end
 end
 
