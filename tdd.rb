@@ -32,18 +32,18 @@ CSV.foreach('tax.csv', headers: true) do |row|
                       row['annual_income'].to_i,
                       row['tax_paid'].to_i,
                       row['tax_rate'].to_i)
-
-  people.each do |individual|
-    individual.tax_liability
-  end
-
-  people.each do |individual|
-    binding.pry
-    puts individual.first_name + " " + individual.last_name + " owes " + individual.tax_owed.to_s + " in taxes"
-  end
 end
 
+people.each do |individual|
+  individual.tax_liability
+end
 
-
+people.each do |individual|
+  if individual.tax_owed < 0
+    puts "#{individual.first_name} " + "#{individual.last_name}" + " will receive a refund of #{individual.tax_owed.abs.to_i}"
+  else
+    puts "#{individual.first_name} " + "#{individual.last_name}" + " owes " + "$#{'%.2f' % individual.tax_owed.to_i}" + " in taxes"
+  end
+end
 
 
