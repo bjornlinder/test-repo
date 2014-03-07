@@ -3,22 +3,23 @@ require 'pry'
 
 class TaxCalc
   attr :citizens
-  
-  #def tax_liability
-  #   end
-  #   
-  #   def tax_owed
-  #   end
-  
-  def initialize
+   def initialize
     @citizens = {}
-    
-    CSV.foreach('tax.csv', headers: true) do |row|      
-      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],row['last_name'], row['annual_income'],row['tax_paid'],row['tax_rate'])                                                                      
+    CSV.foreach('tax.csv', headers: true) do |row|
+      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],
+                                                                          row['last_name'],
+                                                                          row['annual_income'],
+                                                                          row['tax_paid'],
+                                                                          row['tax_rate'])
     end
+    binding.pry
+   end
+
+  def tax_liability(citizens)
+    ((citizens.annual_income.to_i * (citizens.tax_rate.to_i / 100)) - citizens.tax_paid).to_i
+
   end
 end
-
 
 
 class Citizen < TaxCalc
@@ -32,15 +33,3 @@ class Citizen < TaxCalc
   end
 end
 
-
-
-
-
-# class TaxCalculator
-#   def tax_liability
-#   end
-#   
-#   def tax_owed
-#   end
-#   
-# end

@@ -1,36 +1,52 @@
 require 'rspec'
 require_relative 'tdd'
 
-describe Citzen 
-# bla bla get the info
-
-
-
-describe TaxCalc do 
+describe TaxCalc do
+	let (:citizens) { 'Johnny Smith' }
   it 'generates Citizen objects from CSV' do
-    puts TaxCalc.new().citizens
-    expect(TaxCalc.new().citizens["Liz Lemon"]).!nil?
+    expect(TaxCalc.new().citizens[citizens])
   end
-  it "returns a person's tax rate when asked for it"
- # expect(@citizens['Liz_lemon'].tax_rate.type).to eq(Integer)
- #Do taxes
- #Calculate difference
- #How much is owed
+  let (:citizens) { 'Jane Doe' }
+   it 'generates Citizen objects from CSV' do
+    expect(TaxCalc.new().citizens[citizens])
+  end
+   let (:citizens) { 'Liz Lemon' }
+   it 'generates Citizen objects from CSV' do
+    expect(TaxCalc.new().citizens[citizens])
+  end
+   let (:citizens) { 'Orson Orsillio' }
+   it 'generates Citizen objects from CSV' do
+    expect(TaxCalc.new().citizens[citizens])
+  end
+  let (:citizens) { 'Eric Schmidt' }
+   it 'generates Citizen objects from CSV' do
+    expect(TaxCalc.new().citizens[citizens])
+  end
+
+   # it 'calculates a total of 0 for Eric Schmidt annual income' do
+   # 	expect(TaxCalc.new()citizen.annual_income['Eric Schmidt'].to eql(0)
+   # end
+
+  let (:citizens) { 'Johnny Smith' }
+  it 'generates tax liabilities for each citizen object' do
+  	expect(TaxCalc.new().tax_liability(citizens)).to eq(17600)
+  end
+  let (:citizens) { 'Jane Doe' }
+  it 'generates tax liabilities for each citizen object' do
+  	expect(TaxCalc.new().tax_liability(citizens)).to eq(26000)
+  end
+  let (:citizens) { 'Liz Lemon' }
+  it 'generates tax liabilities for each citizen object' do
+  	expect(TaxCalc.new().tax_liability(citizens)).to eq(39000)
+  end
+  let (:citizens) { 'Orson Orsillio' }
+  it 'generates tax liabilities for each citizen object' do
+  	expect(TaxCalc.new().tax_liability(citizens)).to eq(-1600)
+  end
+  let (:citizens) { 'Eric Schmidt' }
+  it 'generates tax liabilities for each citizen object' do
+  	expect(TaxCalc.new().tax_liability(citizens)).to eq(15120)
+  end
+
 end
 
-
-
-
-
-# describe TaxCalculator do
-#   it 'reads a csv' do
-#     expect(TaxCalculator.new.import_data).nil?
-#   end
-#   it 'reads a csv' do
-#     expect(TaxCalculator.new.import_data).nil?
-#   end
-#   it 'generates output' do
-#     (TaxCalculator.new.display_info.class).should to_eq(String)
-#   end
-#   it 'generates a row for each row of data in csv'
-# end
