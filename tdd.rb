@@ -1,35 +1,49 @@
 require 'csv'
 require 'pry'
 
-class TaxCalc
-  attr :citizens
-   def initialize
-    @citizens = {}
-    CSV.foreach('tax.csv', headers: true) do |row|
-      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],
-                                                                          row['last_name'],
-                                                                          row['annual_income'],
-                                                                          row['tax_paid'],
-                                                                          row['tax_rate'])
-    end
-    binding.pry
-   end
-
-  def tax_liability(citizens)
-    ((citizens.annual_income.to_i * (citizens.tax_rate.to_i / 100)) - citizens.tax_paid).to_i
-
-  end
-end
-
-
-class Citizen < TaxCalc
+class Citizen
   attr_reader :first_name, :last_name, :annual_income, :tax_paid, :tax_rate
+  attr_accessor :tax_owed
   def initialize(first_name,last_name,annual_income,tax_paid,tax_rate)
     @first_name = first_name
     @last_name = last_name
     @annual_income = annual_income
     @tax_paid = tax_paid
     @tax_rate = tax_rate
+    @tax_owed = 0
+  end
+
+  def tax_liability
+    total = annual_income * (tax_rate * 0.01)
+    taxes = total - tax_paid
+    @tax_owed += taxes
+  end
+
+  def summary
+
+  end
+
+end
+
+people = []
+CSV.foreach('tax.csv', headers: true) do |row|
+  people << Citizen.new(row['first_name'],
+                      row['last_name'],
+                      row['annual_income'].to_i,
+                      row['tax_paid'].to_i,
+                      row['tax_rate'].to_i)
+
+  people.each do |individual|
+    individual.tax_liability
+  end
+
+  people.each do |individual|
+    binding.pry
+    puts individual.first_name + " " + individual.last_name + " owes " + individual.tax_owed.to_s + " in taxes"
   end
 end
+
+
+
+
 
