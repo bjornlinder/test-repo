@@ -1,4 +1,29 @@
 require 'csv'
+<<<<<<< HEAD
+=======
+require 'pry'
+
+class TaxCalc
+  attr_reader :citizens
+  
+  def tax_liability(citizen)
+    @citizens[citizen].tax_rate.to_i
+
+  end
+  #   
+  #   def tax_owed
+  #   end
+  
+  def initialize
+    @citizens = {}
+    
+    CSV.foreach('tax.csv', headers: true) do |row|      
+      @citizens[row['first_name'] + ' ' + row['last_name']] = Citizen.new(row['first_name'],row['last_name'], row['annual_income'],row['tax_paid'],row['tax_rate'])                                                                      
+    end
+  end
+end
+
+>>>>>>> upstream/master
 
 class Citizen
   attr_reader :first_name, :last_name, :annual_income, :tax_paid, :tax_rate
