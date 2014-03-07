@@ -1,21 +1,20 @@
 require 'rspec'
 require_relative 'tdd'
 
-describe Citzen 
+#describe Citzen 
 # bla bla get the info
 
 
 
 describe TaxCalc do 
   it 'generates Citizen objects from CSV' do
-    puts TaxCalc.new().citizens
-    expect(TaxCalc.new().citizens["Liz Lemon"]).!nil?
+    expect(TaxCalc.new().citizens["Liz Lemon"])
   end
-  it "returns a person's tax rate when asked for it"
- # expect(@citizens['Liz_lemon'].tax_rate.type).to eq(Integer)
- #Do taxes
- #Calculate difference
- #How much is owed
+  it "returns a person's tax rate when asked for it" do
+    expect(TaxCalc.new().tax_liability("Liz Lemon")).to eq(39000)
+  end
+  #annual income
+  #tax rate
 end
 
 

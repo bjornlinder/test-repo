@@ -2,10 +2,12 @@ require 'csv'
 require 'pry'
 
 class TaxCalc
-  attr :citizens
+  attr_reader :citizens
   
-  #def tax_liability
-  #   end
+  def tax_liability(citizen)
+    @citizens[citizen].tax_rate.to_i
+
+  end
   #   
   #   def tax_owed
   #   end
