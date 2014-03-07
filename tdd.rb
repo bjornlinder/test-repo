@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 class Citizen
   attr_reader :first_name, :last_name, :annual_income, :tax_paid, :tax_rate
@@ -19,10 +18,6 @@ class Citizen
     @tax_owed += taxes
   end
 
-  def summary
-
-  end
-
 end
 
 people = []
@@ -40,9 +35,9 @@ end
 
 people.each do |individual|
   if individual.tax_owed < 0
-    puts "#{individual.first_name} " + "#{individual.last_name}" + " will receive a refund of #{individual.tax_owed.abs.to_i}"
+    puts "#{individual.first_name} " + "#{individual.last_name}" + " will receive a refund of $#{individual.tax_owed.abs.to_i}"
   else
-    puts "#{individual.first_name} " + "#{individual.last_name}" + " owes " + "$#{'%.2f' % individual.tax_owed.to_i}" + " in taxes"
+    puts "#{individual.first_name} " + "#{individual.last_name}" + " owes " + "$#{individual.tax_owed.to_i}" + " in taxes"
   end
 end
 
